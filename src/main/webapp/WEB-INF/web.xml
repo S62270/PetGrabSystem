@@ -4,9 +4,25 @@
         <servlet-name>CustomerServlet</servlet-name>
         <servlet-class>com.controller.CustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServiceServlet</servlet-name>
+        <servlet-class>com.controller.ServiceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VendorServlet</servlet-name>
+        <servlet-class>com.controller.VendorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/CustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServiceServlet</servlet-name>
+        <url-pattern>/ServiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VendorServlet</servlet-name>
+        <url-pattern>/VendorServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
