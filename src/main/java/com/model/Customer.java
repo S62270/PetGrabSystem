@@ -9,6 +9,7 @@ package com.model;
  * @author yoonj
  */
 public class Customer {
+
     private int custid;
     private String username;
     private String password;
@@ -16,12 +17,11 @@ public class Customer {
     private String email;
     private String address;
     private String phonenum;
-    private String dob;
 
     public Customer() {
     }
-  
-    public Customer( String username, String password, String name, String email, String address, String phonenum, String dob) {
+
+    public Customer(String username, String password, String name, String email, String address, String phonenum) {
         super();
         this.username = username;
         this.password = password;
@@ -29,10 +29,10 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.phonenum = phonenum;
-        this.dob = dob;
+
     }
-    
-    public Customer(int custid, String username, String password, String name, String email, String address, String phonenum, String dob) {
+
+    public Customer(int custid, String username, String password, String name, String email, String address, String phonenum) {
         this.custid = custid;
         this.username = username;
         this.password = password;
@@ -40,7 +40,7 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.phonenum = phonenum;
-        this.dob = dob;
+
     }
 
     public int getCustid() {
@@ -99,12 +99,4 @@ public class Customer {
         this.phonenum = phonenum;
     }
 
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-    
 }
