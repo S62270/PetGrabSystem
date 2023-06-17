@@ -57,7 +57,7 @@ public class ServicesDAO {
         }
     }
 
-    public Services selectFoodOrder(int id) {
+    public Services selectService(int id) {
         Services service = null;
 
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(SELECT_SERVICES_SQL_BY_ID)) {
@@ -102,7 +102,7 @@ public class ServicesDAO {
         return services;
     }
 
-    public List<Services> selectAllFoodOrder() {
+    public List<Services> selectAllService() {
         List<Services> services = new ArrayList<>();
 
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(SELECT_ALL_SERVICES_SQL);) {
@@ -132,7 +132,7 @@ public class ServicesDAO {
         return rowDeleted;
     }
 
-    public boolean updateFood(Services service) throws SQLException {
+    public boolean updateService(Services service) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(UPDATE_SERVICES_SQL)) {
             ps.setInt(1, service.getVendorId());

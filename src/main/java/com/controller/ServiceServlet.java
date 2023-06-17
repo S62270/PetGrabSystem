@@ -1,83 +1,113 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.controller;
 
+import com.dao.ServicesDAO;
+import com.model.Customer;
+import com.model.Services;
+import jakarta.servlet.RequestDispatcher;
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 
-
-/**
- *
- * @author Hp
- */
+@WebServlet("/")
 public class ServiceServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private ServicesDAO serviceDao;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServiceServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServiceServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    public void init() {
+        serviceDao = new ServicesDAO();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getServletPath();
+        try {
+            switch (action) {
+                case "/new":
+                    registerForm(request, response);
+                    break;
+                case "/insert":
+                    insertService(request, response);
+                    break;
+                case "/edit":
+                    showEditForm(request, response);
+                    break;
+                case "/update":
+                    updateService(request, response);
+                    break;
+                case "/delete":
+                    deleteService(request, response);
+                default:
+                    showHomePage(request, response);
+                    break;
+
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private void registerForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("serviceForm.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("customerLogin.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Services service = serviceDao.selectService(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("serviceForm.jsp");
+        request.setAttribute("service", service);
+        dispatcher.forward(request, response);
+    }
+
+    private void insertService(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int vendorId = Integer.parseInt(request.getParameter("vendorId"));
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        Double price = Double.parseDouble(request.getParameter("price"));
+        Services service = new Services(vendorId, name, description, price);
+        serviceDao.insertServices(service);
+        response.sendRedirect("list");
+    }
+
+    private void updateService(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        int vendorId = Integer.parseInt(request.getParameter("vendorId"));
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        Double price = Double.parseDouble(request.getParameter("price"));
+        Services service = new Services(vendorId, name, description, price);
+        serviceDao.updateService(service);
+        response.sendRedirect("list");
+    }
+
+   private void deleteService(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println("ID:" + id);
+        serviceDao.deleteServices(id);
+        response.sendRedirect("list");
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
