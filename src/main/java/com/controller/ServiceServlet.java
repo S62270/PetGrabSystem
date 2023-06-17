@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.dao.ServicesDAO;
-import com.model.Customer;
 import com.model.Services;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;

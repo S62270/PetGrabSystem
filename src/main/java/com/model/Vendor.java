@@ -16,8 +16,16 @@ public class Vendor {
     private String address;
     private String email;
 
+    
     public Vendor(int id,String name,String phone,String address,String email){
         this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+    }
+    
+    public Vendor(String name,String phone,String address,String email){
         this.name = name;
         this.phone = phone;
         this.address = address;
