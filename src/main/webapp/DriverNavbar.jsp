@@ -1,0 +1,145 @@
+<%-- 
+    Document   : DriverNavbar
+    Created on : 18 Jun 2023, 11:42:51 pm
+    Author     : MUHAMMAD FAUZUL AZIM BIN IMRAN HAYAT
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pet Grab Driver</title>
+
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .sidebar {
+                height: 100%;
+                width: 250px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color: #f5f5f5;
+                overflow-x: hidden;
+                padding-top: 20px;
+                transition: width 0.3s;
+            }
+
+            .sidebar:hover {
+                width: 280px;
+            }
+
+            .sidebar-header {
+                padding: 10px 20px;
+            }
+
+            .sidebar-header strong {
+                color: #333;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+
+            .sidebar ul.components {
+                padding: 20px 0;
+            }
+
+            .sidebar ul li {
+                margin-bottom: 10px;
+            }
+
+            .sidebar ul li a {
+                display: flex;
+                align-items: center;
+                color: #555;
+                padding: 10px 20px;
+                text-decoration: none;
+            }
+
+            .sidebar ul li a i {
+                margin-right: 10px;
+                font-size: 1.2rem;
+            }
+
+            .sidebar ul li a:hover {
+                background-color: #ebebeb;
+                color: #333;
+            }
+
+            .sidebar.active {
+                width: 280px;
+            }
+
+            .page-content {
+                margin-left: 250px;
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <a href="#">
+                        <img src="Image/petgrab.png" class="rounded-circle" alt="Logo">
+                        <strong>Pet Grab</strong>
+                    </a>
+                </div>
+                <ul class="list-unstyled components">
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-user"></i>
+                            <span class="nav-text">Account</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <span class="nav-text">Order</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-money-bill"></i>
+                            <span class="nav-text">Salary</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="nav-text">Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('.sidebar').toggleClass('active');
+                });
+            });
+        </script>
+    </body>
+</html>
