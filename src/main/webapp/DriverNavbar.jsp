@@ -93,7 +93,6 @@
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <a href="#">
-                        <img src="Image/petgrab.png" class="rounded-circle" alt="Logo">
                         <strong>Pet Grab</strong>
                     </a>
                 </div>
