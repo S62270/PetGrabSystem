@@ -7,7 +7,7 @@
         <style>
             /* Add custom styles here */
             .jumbotron {
-                background-image: url("background-image.jpg");
+                background-image: url("images/logo.png");
                 background-size: cover;
                 background-position: center;
                 color: white;
