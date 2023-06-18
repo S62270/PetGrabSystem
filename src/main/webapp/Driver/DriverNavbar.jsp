@@ -98,7 +98,7 @@
                 </div>
                 <ul class="list-unstyled components">
                     <li>
-                        <a href="#">
+                        <a href="DriverMainpage.jsp">
                             <i class="fas fa-tachometer-alt"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
@@ -110,7 +110,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="DriverOrder.jsp">
                             <i class="fas fa-file-invoice-dollar"></i>
                             <span class="nav-text">Order</span>
                         </a>
