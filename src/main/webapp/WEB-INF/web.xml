@@ -14,15 +14,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/customer/*</url-pattern>
+        <url-pattern>/Customer/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServiceServlet</servlet-name>
-        <url-pattern>/service/*</url-pattern>
+        <url-pattern>/Service/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VendorServlet</servlet-name>
-        <url-pattern>/vendor/*</url-pattern>
+        <url-pattern>/Vendor/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>

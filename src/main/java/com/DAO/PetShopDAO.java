@@ -1,6 +1,5 @@
 package com.DAO;
 
-import com.model.Customer;
 import com.model.PetShop;
 import com.model.Service;
 import java.sql.Connection;
