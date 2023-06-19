@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
-@WebServlet("/")
+@WebServlet("/Vendor")
 public class VendorServlet extends HttpServlet {
 
     private VendorDAO vendorDao;
