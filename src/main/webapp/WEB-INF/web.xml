@@ -8,6 +8,18 @@
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/CustomerServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpeg</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
