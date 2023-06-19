@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -65,6 +66,9 @@
                             </ul>
                         </li>
                     </ul>
+                    <c:if test="${customer!=null}">
+                    <h1 style="color: white">Welcome back, <c:out value="${customer.username}"/></h1>
+                    </c:if>
                 </div>
             </div>
         </nav>

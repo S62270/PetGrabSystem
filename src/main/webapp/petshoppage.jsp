@@ -26,7 +26,7 @@
                         <div class="portfolio-details-slider swiper">
                             <div class="swiper-wrapper align-items-center">
                                 <div class="swiper-slide">
-                                    <img src="PetGrabSyste/src/main/webapp/images/logo.png" alt="sini">
+                                    
                                 </div>
                             </div>                           
                         </div>

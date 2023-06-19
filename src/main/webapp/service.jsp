@@ -18,6 +18,7 @@
         <br><br>
         <div class="container">
             <h1>Pick a shop</h1>
+            <br>
             <div class="container">
 
                 <div class="row">       

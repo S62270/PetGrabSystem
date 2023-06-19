@@ -25,7 +25,7 @@ public class CustomerDAO {
     private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer(username,password,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
     private static final String SELECT_CUSTOMER_BY_ID = "SELECT custid,username,password,name,email,address,phonenum FROM customer WHERE custid=?";
     private static final String SELECT_ALL_CUSTOMER = "SELECT * FROM customer";
-    private static final String DELETE_CUSTOMER_SQL = "DELETE FROM customer WHERE custid=?";
+    private static final String LOGIN = "SELECT * FROM customer WHERE username=? AND password=?";
     private static final String UPDATE_CUSTOMER_SQL = "UPDATE customer SET username=?,password=?,name=?,email=?,address=?,phonenum=? WHERE custid=?";
 
     public CustomerDAO() {
@@ -57,13 +57,38 @@ public class CustomerDAO {
             preparedStatement.setString(3, cust.getName());
             preparedStatement.setString(4, cust.getEmail());
             preparedStatement.setString(5, cust.getAddress());
-            preparedStatement.setString(6, cust.getPhonenum());            
+            preparedStatement.setString(6, cust.getPhonenum());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public Customer selectCustomerByUsername(String un,String pw) {
+        Customer cust = null;
+
+        try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement("SELECT * FROM customer WHERE username=? AND password=?")) {
+            ps.setString(1,un);
+            ps.setString(2,pw);
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()) {
+                int custid = rs.getInt("custid");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                String phonenum = rs.getString("phonenum");
+                cust = new Customer(custid, un, pw, name, email, address, phonenum);
+                
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cust;
     }
 
     public Customer selectCustomer(int id) {
@@ -80,7 +105,7 @@ public class CustomerDAO {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
-                String phonenum = rs.getString("phonenum");                
+                String phonenum = rs.getString("phonenum");
                 cust = new Customer(id, username, password, name, email, address, phonenum);
             }
 
@@ -89,6 +114,9 @@ public class CustomerDAO {
         }
         return cust;
     }
+
+    
+    
 
     public boolean updateCustomer(Customer cust) throws SQLException {
         boolean rowUpdated;
@@ -101,7 +129,7 @@ public class CustomerDAO {
             preparedStatement.setString(6, cust.getPhonenum());
             preparedStatement.setInt(7, cust.getCustid());
             System.out.println(preparedStatement);
-            rowUpdated = preparedStatement.executeUpdate()>0;
+            rowUpdated = preparedStatement.executeUpdate() > 0;
         }
         return rowUpdated;
     }

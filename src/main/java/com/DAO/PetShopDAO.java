@@ -16,8 +16,8 @@ public class PetShopDAO {
     private String jdbcURL = "jdbc:mysql://localhost/petgrabsystem";
     private String jdbcUsername = "root";
     private String jdbcPassword = "admin";
-    private static final String INSERT_PETSHOP_SQL = "INSERT INTO customer(username,password,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
-    private static final String SELECT_PETSHOP_BY_ID = "SELECT shopid,username,password,shopname,shopaddress,phonenum FROM petshop WHERE shopid=?";
+    private static final String INSERT_PETSHOP_SQL = "INSERT INTO petshop(shopid,username,password,shopname,shopaddress,phonenum,imagepetshop) VALUES (?,?,?,?,?,?,?);";
+    private static final String SELECT_PETSHOP_BY_ID = "SELECT shopid,username,password,shopname,shopaddress,phonenum,imagepetshop FROM petshop WHERE shopid=?";
     private static final String SELECT_ALL_PETSHOP = "SELECT * FROM petshop";
     private static final String SELECT_ALL_SERVICE = "SELECT * FROM service WHERE shopid=?";
     private static final String UPDATE_PETSHOP_SQL = "UPDATE customer SET username=?,password=?,name=?,email=?,address=?,phonenum=? WHERE custid=?";
@@ -48,8 +48,9 @@ public class PetShopDAO {
                 String password = rs.getString("password");
                 String shopname = rs.getString("shopname");
                 String shopaddress = rs.getString("shopaddress");               
-                String phonenum = rs.getString("phonenum");                
-                pet = new PetShop(id, username, password, shopname, shopaddress, phonenum);
+                String phonenum = rs.getString("phonenum");   
+                byte imagepetshop = rs.getByte("imagepetshop");
+                pet = new PetShop(id, username, password, shopname, shopaddress, phonenum,imagepetshop);
             }
 
         } catch (SQLException e) {
@@ -70,8 +71,9 @@ public class PetShopDAO {
                 String password = rs.getString("password");
                 String shopname = rs.getString("shopname");
                 String shopaddress = rs.getString("shopaddress");               
-                String phonenum = rs.getString("phonenum");                                
-                pet.add( new PetShop(shopid, username, password, shopname, shopaddress, phonenum));
+                String phonenum = rs.getString("phonenum");        
+                byte imagepetshop = rs.getByte("imagepetshop");
+                pet.add( new PetShop(shopid, username, password, shopname, shopaddress, phonenum,imagepetshop));
             }
         } catch (SQLException e) {
             e.printStackTrace();

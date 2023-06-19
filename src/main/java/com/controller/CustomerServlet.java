@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -56,6 +57,9 @@ public class CustomerServlet extends HttpServlet {
                 case "/listPetShopById":
                     listPetShopById(request, response);
                     break;
+                case "/login":
+                    processLogin(request,response);
+                    break;
                 default:
                     showHomePage(request, response);
                     break;
@@ -65,7 +69,23 @@ public class CustomerServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
-
+   
+    private void processLogin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        String un = request.getParameter("username");
+        String pw = request.getParameter("password");
+        
+        Customer cust = custDAO.selectCustomerByUsername(un,pw);
+        if(cust!=null){
+            HttpSession session = request.getSession();
+            request.setAttribute("customer", cust);
+            RequestDispatcher rd = request.getRequestDispatcher("homepage.jsp");
+            rd.forward(request, response);
+        }else{
+            RequestDispatcher rd = request.getRequestDispatcher("invalid.jsp");
+            rd.forward(request, response);
+        }
+    }
+    
     private void listPetShopById(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         PetShop pets = petshopDAO.selectPetshop(id);
@@ -77,6 +97,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void listPetShop(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
         List<PetShop> listPetShop = petshopDAO.selectAllPetShop();
         request.setAttribute("vendor", listPetShop);
         RequestDispatcher dispatcher = request.getRequestDispatcher("service.jsp");

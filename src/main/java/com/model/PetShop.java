@@ -8,19 +8,21 @@ public class PetShop {
     private String shopname;
     private String shopaddress;
     private String phonenum;
+    private byte imagepetshop;
 
     public PetShop(){
         
     }
-    public PetShop(String username, String password, String shopname, String shopaddress, String phonenum) {
+    public PetShop(String username, String password, String shopname, String shopaddress, String phonenum, byte imagepetshop) {
         super();
         this.username = username;
         this.password = password;
         this.shopname = shopname;
         this.shopaddress = shopaddress;
         this.phonenum = phonenum;
+        this.imagepetshop = imagepetshop;
     }
-    public PetShop(int shopid, String username, String password, String shopname, String shopaddress, String phonenum) {
+    public PetShop(int shopid, String username, String password, String shopname, String shopaddress, String phonenum, byte imagepetshop) {
         super();
         this.shopid = shopid;
         this.username = username;
@@ -28,7 +30,17 @@ public class PetShop {
         this.shopname = shopname;
         this.shopaddress = shopaddress;
         this.phonenum = phonenum;
+        this.imagepetshop = imagepetshop;
     }
+
+    public byte getImagepetshop() {
+        return imagepetshop;
+    }
+
+    public void setImagepetshop(byte imagepetshop) {
+        this.imagepetshop = imagepetshop;
+    }
+    
 
     public int getShopid() {
         return shopid;
