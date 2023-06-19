@@ -18,7 +18,7 @@ import java.util.List;
  * @author Hp
  */
 public class ServicesDAO {
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrab";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrabsystem";
     private final String jdbcUsername = "root";
     private final String jdbcPassword = "";
 

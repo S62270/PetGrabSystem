@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.DAO.CustomerDAO;
-import com.DAO.PetShopDAO;
+import com.dao.CustomerDAO;
+import com.dao.PetShopDAO;
 import com.model.Customer;
 import com.model.PetShop;
 import com.model.Service;
@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/")
+@WebServlet("/Customer")
 public class CustomerServlet extends HttpServlet {
 
     private CustomerDAO custDAO;

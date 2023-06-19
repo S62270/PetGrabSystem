@@ -20,11 +20,11 @@ import java.util.List;
 public class VendorDAO {
 
     Connection connection = null;
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrab";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrabsystem";
     private final String jdbcUsername = "root";
     private final String jdbcPassword = "";
 
-    private static final String INSERT_VENDOR_SQL = "INSERT INTO vendor(id, name, phone, address, email ) values(?,?,?,?,?);";
+    private static final String INSERT_VENDOR_SQL = "INSERT INTO vendor(name, phone, address, email ) values(?,?,?,?);";
     private static final String SELECT_VENDOR_BY_ID_SQL = "SELECT * FROM vendor where id=?;";
     private static final String SELECT_ALL_VENDOR_SQL = "SELECT * FROM vendor;";
     private static final String DELETE_VENDOR_SQL = "delete from vendor where id=?;";
