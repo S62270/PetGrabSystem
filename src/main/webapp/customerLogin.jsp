@@ -33,6 +33,7 @@
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Enter your password">
                         </div>
+                        <p style="color:red"><a href="customerForm.jsp">Register</a>
                         
                         <br>
                         <div class="d-grid gap-2">
