@@ -4,6 +4,7 @@
     Author     : yoonj
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,18 +18,22 @@
         <br><br>
         <div class="container">
             <h1>Pick a shop</h1>
+            <br>
             <div class="container">
-                <div class="row">                   
-                    <div class="col-md-4" >
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Vendor 1</h5>
-                                <p class="card-text">Description of Vendor 1</p>
+
+                <div class="row">       
+                    <c:forEach var="ven" items="${vendor}">
+                        <div class="col-md-4" >
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="listPetShopById?id=<c:out value='${ven.shopid}'/>"><c:out value="${ven.shopname}"/></a></h5>
+                                    <p class="card-text"><c:out value="${ven.shopaddress}"/></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Add more vendor cards as needed -->
-                </div>
+                        <!-- Add more vendor cards as needed -->
+                    </c:forEach>
+                </div>        
             </div>
         </div>
     </body>

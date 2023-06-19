@@ -11,7 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>About Us</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
+        <style>
+            
+            .card-img-top {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+            .custom-img {
+    height: 400px; /* Adjust the height to your desired value */
+    object-fit: cover;
+    width: 100%;
+}
+            
+        </style>
     </head>
     <body>
         <jsp:include page="navbar.jsp" />
@@ -23,7 +36,7 @@
                 <!-- Developer 1 -->
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" src="path_to_image1.jpg" alt="Developer 1">
+                        <img class="card-img-top custom-img" src="images/niyaz.jpg" alt="Developer 1">
                         <div class="card-body">
                             <h5 class="card-title">Niyaz Aysar Tissen</h5>
                             <p class="card-text">Front-end Developer</p>
@@ -34,7 +47,7 @@
                 <!-- Developer 2 -->
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" src="path_to_image2.jpg" alt="Developer 2">
+                        <img class="card-img-top custom-img" src="images/azim.jpg" alt="Developer 2">
                         <div class="card-body">
                             <h5 class="card-title">Fauzul Azim</h5>
                             <p class="card-text">Back-end Developer</p>
@@ -45,7 +58,7 @@
                 <!-- Developer 3 -->
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" src="path_to_image3.jpg" alt="Developer 3">
+                        <img class="card-img-top custom-img" src="images/siew.jpg" alt="Developer 3">
                         <div class="card-body">
                             <h5 class="card-title">Siew King Sam</h5>
                             <p class="card-text">Full-stack Developer</p>
@@ -66,6 +79,8 @@
                     reliability, and peace of mind.</p>
             </div>
         </div>
+        <jsp:include page="footer.jsp"/>
+
 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </body>
