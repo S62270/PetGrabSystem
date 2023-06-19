@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.DAO.PetShopDAO;
+import com.dao.PetShopDAO;
 import com.model.PetShop;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
