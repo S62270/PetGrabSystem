@@ -1,4 +1,4 @@
-package com.dao;
+package com.DAO;
 
 import com.model.PetShop;
 import com.model.Service;
