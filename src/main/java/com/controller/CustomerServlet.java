@@ -36,29 +36,30 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getServletPath();
+               String action = request.getParameter("action");
+
         try {
             switch (action) {
-                case "/new":
+                case "new":
                     registerForm(request, response);
                     break;
-                case "/insert":
+                case "insert":
                     insertCustomer(request, response);
                     break;
-                case "/edit":
+                case "edit":
                     showEditForm(request, response);
                     break;
-                case "/update":
+                case "update":
                     updateCustomer(request, response);
                     break;
-                case "/listPetShop":
+                case "listPetShop":
                     listPetShop(request, response);
                     break;
-                case "/listPetShopById":
+                case "listPetShopById":
                     listPetShopById(request, response);
                     break;
-                case "/login":
-                    processLogin(request,response);
+                case "login":
+                    processLogin(request, response);
                     break;
                 default:
                     showHomePage(request, response);
@@ -69,23 +70,23 @@ public class CustomerServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
-   
+
     private void processLogin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String un = request.getParameter("username");
         String pw = request.getParameter("password");
-        
-        Customer cust = custDAO.selectCustomerByUsername(un,pw);
-        if(cust!=null){
+
+        Customer cust = custDAO.selectCustomerByUsername(un, pw);
+        if (cust != null) {
             HttpSession session = request.getSession();
             request.setAttribute("customer", cust);
             RequestDispatcher rd = request.getRequestDispatcher("homepage.jsp");
             rd.forward(request, response);
-        }else{
+        } else {
             RequestDispatcher rd = request.getRequestDispatcher("invalid.jsp");
             rd.forward(request, response);
         }
     }
-    
+
     private void listPetShopById(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         PetShop pets = petshopDAO.selectPetshop(id);
