@@ -1,6 +1,5 @@
 package com.DAO;
 
-import com.model.Customer;
 import com.model.PetShop;
 import com.model.Service;
 import java.sql.Connection;
@@ -15,7 +14,7 @@ public class PetShopDAO {
      Connection connection = null;
     private String jdbcURL = "jdbc:mysql://localhost/petgrabsystem";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "admin";
+    private String jdbcPassword = "";
     private static final String INSERT_PETSHOP_SQL = "INSERT INTO petshop(shopid,username,password,shopname,shopaddress,phonenum,imagepetshop) VALUES (?,?,?,?,?,?,?);";
     private static final String SELECT_PETSHOP_BY_ID = "SELECT shopid,username,password,shopname,shopaddress,phonenum,imagepetshop FROM petshop WHERE shopid=?";
     private static final String SELECT_ALL_PETSHOP = "SELECT * FROM petshop";

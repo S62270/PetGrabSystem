@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/")
+@WebServlet("/Customer")
 public class CustomerServlet extends HttpServlet {
 
     private CustomerDAO custDAO;
