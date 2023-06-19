@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -53,7 +54,7 @@
                             <a class="nav-link" href="aboutus.jsp">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="service.jsp">Service</a>
+                            <a class="nav-link" href="http://localhost:8080/PetGrabSystem/listPetShop">Service</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,6 +66,9 @@
                             </ul>
                         </li>
                     </ul>
+                    <c:if test="${customer!=null}">
+                    <h1 style="color: white">Welcome back, <c:out value="${customer.username}"/></h1>
+                    </c:if>
                 </div>
             </div>
         </nav>
