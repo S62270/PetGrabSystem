@@ -92,6 +92,7 @@
         <div class="sidebar">
             <nav id="sidebar">
                 <div class="sidebar-header">
+                    <img src="../Image/pet grab.png" alt="Logo" class="rounded-circle" width="50px"><!-- Logo -->
                     <a href="#">
                         <strong>Pet Grab</strong>
                     </a>
@@ -104,7 +105,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="DriverAccount.jsp">
                             <i class="fas fa-user"></i>
                             <span class="nav-text">Account</span>
                         </a>
@@ -116,7 +117,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="DriverSalary.jsp">
                             <i class="fas fa-money-bill"></i>
                             <span class="nav-text">Salary</span>
                         </a>
