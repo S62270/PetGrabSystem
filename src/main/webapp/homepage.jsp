@@ -111,7 +111,6 @@
                 </div>
             </div>
         </section>
-    </section>
     <!-- Pricing section -->
     <section class="bg-light py-5">
         <div class="container text-center">
