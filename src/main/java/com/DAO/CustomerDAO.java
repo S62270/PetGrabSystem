@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.DAO;
+package com.dao;
 
 import com.model.Customer;
 import java.sql.Connection;
@@ -14,9 +14,9 @@ import java.sql.SQLException;
 public class CustomerDAO {
 
     Connection connection = null;
-    private String jdbcURL = "jdbc:mysql://localhost/petgrabsystem";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrabsystem";
+    private final String jdbcUsername = "root";
+    private final String jdbcPassword = "";
     private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer(username,passwords,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
     private static final String SELECT_CUSTOMER_BY_ID = "SELECT id,username,passwords,name,email,address,phonenum FROM customer WHERE id=?";
     private static final String SELECT_ALL_CUSTOMER = "SELECT * FROM customer";
