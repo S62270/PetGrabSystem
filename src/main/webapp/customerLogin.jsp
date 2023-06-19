@@ -33,24 +33,7 @@
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Enter your password">
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" value="Customer">
-                            <label class="form-check-label">
-                                Customer
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" value="Driver">
-                            <label class="form-check-label">
-                                Driver
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" value="Vendor">
-                            <label class="form-check-label">
-                                Vendor
-                            </label>
-                        </div>
+                        
                         <br>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success">Login</button>                            
