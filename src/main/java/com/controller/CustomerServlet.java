@@ -34,6 +34,7 @@ public class CustomerServlet extends HttpServlet {
     public void init() {
         custDAO = new CustomerDAO();
         petshopDAO = new PetShopDAO();
+        serviceDAO = new ServicesDAO();
     }
 
     @Override

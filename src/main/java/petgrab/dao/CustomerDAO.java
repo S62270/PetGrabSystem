@@ -17,7 +17,7 @@ public class CustomerDAO {
     Connection connection = null;
     private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrabsystem";
     private final String jdbcUsername = "root";
-    private final String jdbcPassword = "admin";
+    private final String jdbcPassword = "";
     private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer(username,passwords,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
     private static final String SELECT_CUSTOMER_BY_ID = "SELECT id,username,passwords,name,email,address,phonenum FROM customer WHERE id=?";
     private static final String BOOK_ORDER_CUSTOMER = "INSERT INTO orders(custid,shopid,petname,petage,petgender,purposeofvisit,time,date,status) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -85,12 +85,13 @@ public class CustomerDAO {
         }
     }
     
-    public Customer selectCustomerByUsername(String un,String pw) {
+    public Customer selectCustomerByUsername(String un,String pw) throws SQLException {
         Customer cust = null;
 
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement("SELECT * FROM customer WHERE username=? AND password=?")) {
             ps.setString(1,un);
-            ps.setString(2,pw);
+            ps.setString(2,pw); 
+
             System.out.println(ps);
             ResultSet rs = ps.executeQuery();
 
