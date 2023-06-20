@@ -108,7 +108,7 @@
 
             <!-- Registration Form -->
             <h2 id="reg-form" style="display: none;">Registration</h2>
-            <form id="registration-form" action="DriverController/insert" method="POST" style="display: none;">
+            <form id="registration-form" action="/DriverController/insert" method="POST" style="display: none;">
                 <div class="mb-3">
                     <label for="reg-username" class="form-label">Username</label>
                     <input type="text" id="reg-username" name="username" class="form-control" placeholder="Choose a username" required>
