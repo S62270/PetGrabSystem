@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,21 +46,27 @@ public class DriverController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String action = request.getParameter("action");
+        System.out.println(request.getServletPath());
         try {
-            String action = request.getServletPath();
-            
             switch (action) {
-                case "/insert":
+                case "insert":
                     insertDriver(request, response);
                     break;
-                case "/update":
+                case "update":
                     updateDriver(request, response);
                     break;
-                case "/delete":
+                case "delete":
                     deleteDriver(request, response);
                     break;
-                case "/edit":
+                case "edit":
                     editForm(request, response);
+                    break;
+                case "login":
+                    login(request, response); // Handle login action
+                    break;
+                case "logout":
+                    logout(request, response);
                     break;
                 default:
                     viewList(request, response);
@@ -100,7 +107,8 @@ public class DriverController extends HttpServlet {
         success = dao.AddDriver(driver);
         if (success = true) {
             System.out.println("Driver Insertion Successful");
-            RequestDispatcher rd = request.getRequestDispatcher("/Authentication.jsp");
+            request.setAttribute("message", "Registration success!");
+            RequestDispatcher rd = request.getRequestDispatcher("/homepage.jsp");
             rd.forward(request, response);
         } else {
             System.out.println("Driver Insertion is Denied");
@@ -126,7 +134,9 @@ public class DriverController extends HttpServlet {
 
         if (success = true) {
             System.out.println("Driver Update Successful");
-            response.sendRedirect("/DriverAccount.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("account", driver);
+            response.sendRedirect("DriverAccount.jsp");
         } else {
             System.out.println("Driver Update is Denied");
         }
@@ -161,6 +171,37 @@ public class DriverController extends HttpServlet {
         List<Driver> driver = dao.SelectAllDriver();
         RequestDispatcher rd = request.getRequestDispatcher("driverList.jsp");
         request.setAttribute("driverlist", driver);
+        rd.forward(request, response);
+    }
+
+    public void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        // Call the DAO method to verify the login credentials
+        boolean loginSuccessful = dao.verifyLogin(username, password);
+
+        Driver driver = dao.SelectDriverByUsername(username);
+
+        if (loginSuccessful == true) {
+            // Redirect to a success page
+            HttpSession session = request.getSession();
+            session.setAttribute("account", driver);
+            RequestDispatcher rd = request.getRequestDispatcher("/DriverMainpage.jsp");
+            rd.forward(request, response);
+        } else {
+            // Redirect to a failure page
+            response.sendRedirect("Authentication.jsp");
+        }
+    }
+
+    public void logout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        request.setAttribute("message", "Log Out success!");
+        RequestDispatcher rd = request.getRequestDispatcher("/homepage.jsp");
         rd.forward(request, response);
     }
 

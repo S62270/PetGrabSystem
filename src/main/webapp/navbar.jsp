@@ -61,7 +61,7 @@
                                 Driver
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/Driver/Authentication.jsp">Log in</a></li>
+                                <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/Authentication.jsp">Log in</a></li>
                             </ul>
                         </li>
                          <c:if test="${customer ==null}">

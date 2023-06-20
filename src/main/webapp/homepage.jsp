@@ -48,6 +48,14 @@
             <div class="container">
                 <h1 class="display-4">Welcome to PetGrab: Your Reliable Pet Taxi Service</h1>
                 <p class="lead">Safe and convenient transportation for your furry friends</p>
+                <!-- Display the prompt message if available modul azim jangan ubah -->
+                <% String message = (String) request.getAttribute("message"); %>
+                <% if (message != null && !message.isEmpty()) { %>
+                <script>
+                    // Display the message as a JavaScript alert
+                    alert("<%= message %>");
+                </script>
+                <% } %>
                 <a href="service.jsp" class="btn btn-primary btn-lg">See Our Services</a>
             </div>
         </section>

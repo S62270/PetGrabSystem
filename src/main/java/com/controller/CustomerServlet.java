@@ -179,7 +179,7 @@ public class CustomerServlet extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         Customer cust = new Customer(username, password, name, email, address, phonenum);
         custDAO.insertCustomer(cust);
-        response.sendRedirect("list");
+        response.sendRedirect("customerLogin.jsp");
     }
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {

@@ -21,7 +21,8 @@
         <div class="container col-md-5">
             <div class="card-body">
                 <c:if test="${customer ==null}">
-                    <form class="form-control mb-3" action="insert">                      
+                    <form class="form-control mb-3" action="CustomerServlet">   
+                        <input value="insert" name="action" type="hidden">
                         <h1>Register</h1>
                     </c:if>
                     <c:if test="${customer !=null}">

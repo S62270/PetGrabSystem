@@ -18,7 +18,7 @@ public class CustomerDAO {
     private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrabsystem";
     private final String jdbcUsername = "root";
     private final String jdbcPassword = "admin";
-    private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer(username,passwords,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
+    private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer(username,password,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
     private static final String SELECT_CUSTOMER_BY_ID = "SELECT id,username,passwords,name,email,address,phonenum FROM customer WHERE id=?";
     private static final String BOOK_ORDER_CUSTOMER = "INSERT INTO orders(custid,shopid,petname,petage,petgender,purposeofvisit,time,date,status) VALUES (?,?,?,?,?,?,?,?,?)";
     private static final String LOGIN = "SELECT * FROM customer WHERE username=? AND passwords=?";

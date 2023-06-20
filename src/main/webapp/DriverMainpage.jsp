@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,8 +37,8 @@
         <!-- Page Content -->
         <div class="page-content">
             <div class="container-fluid">
-                <h1><img src="../Image/pet grab.png" alt="Logo" class="rounded-circle" width="70px">&nbsp; Pet Grab Driver</h1><hr>
-                <p>Welcome to the Pet Grab system. Choose a section from the sidebar to get started.</p>
+                <h1><img src="Image/pet grab.png" alt="Logo" class="rounded-circle" width="70px">&nbsp; Pet Grab Driver</h1><hr>
+                <p>Welcome <b>${account.username}</b> to the Pet Grab system. Choose a section from the sidebar to get started.</p>
             </div>
         </div>
     </body>

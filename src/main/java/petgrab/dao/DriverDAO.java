@@ -19,35 +19,38 @@ import java.util.List;
  * @author MUHAMMAD FAUZUL AZIM BIN IMRAN HAYAT
  */
 public class DriverDAO {
+
     //jdbc info
     private String user = "root";
     private String pass = "admin";
     private String jdbcUrl = "jdbc:mysql://localhost:3306/petgrabsystem";
-    
+
     //SQL Queries
-    private final String ADD_DRIVER ="INSERT INTO driver ((username, `password`, `name`, email, address, phonenum, noplate, `status`) VALUES (?,?,?,?,?,?,?,?)";
+    private final String ADD_DRIVER = "INSERT INTO driver (username, password, name, email, address, phonenum, noplate, status) VALUES (?,?,?,?,?,?,?,?)";
     private final String UPDATE_DRIVER = "UPDATE driver SET username=?, password=?, name=?, email=?, address=?, phonenum=?, noplate=?, status=? WHERE driverid=?";
     private final String DELETE_DRIVER = "DELETE FROM driver WHERE driverid=?";
     private final String SELECT_BY_username = "SELECT * FROM driver WHERE username=?";
     private final String SELECT_BY_ID = "SELECT * FROM driver WHERE driverid=?";
     private final String SELECT_ALL_DRIVER = "SELECT * FROM driver";
-    
+    private final String VERIFY_LOGIN = "SELECT * FROM driver WHERE username = ? AND password = ?";
+
     //Create Connection
-    public Connection getConnection(){
+    public Connection getConnection() {
         Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection(jdbcUrl,user,pass);
-        }catch (SQLException | ClassNotFoundException e){
+            con = DriverManager.getConnection(jdbcUrl, user, pass);
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return con;
     }
+
     //Add Driver
-    public boolean AddDriver(Driver driver){
+    public boolean AddDriver(Driver driver) {
         boolean status = false;
-        
-        try (Connection con = getConnection()){
+
+        try (Connection con = getConnection()) {
             PreparedStatement ps = con.prepareStatement(ADD_DRIVER);
             ps.setString(1, driver.getUsername());
             ps.setString(2, driver.getPassword());
@@ -57,18 +60,19 @@ public class DriverDAO {
             ps.setString(6, driver.getPhonenum());
             ps.setString(7, driver.getNoplate());
             ps.setString(8, driver.getStatus());
-            
-            status = ps.executeUpdate() > 0 ;
-        }catch (SQLException e){
+
+            status = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return status;
     }
+
     //Update Driver
-    public boolean UpdateDriver(Driver driver){
+    public boolean UpdateDriver(Driver driver) {
         boolean status = false;
-        try(Connection con = getConnection()){
+        try (Connection con = getConnection()) {
             PreparedStatement ps = con.prepareStatement(UPDATE_DRIVER);
             ps.setString(1, driver.getUsername());
             ps.setString(2, driver.getPassword());
@@ -79,31 +83,33 @@ public class DriverDAO {
             ps.setString(7, driver.getNoplate());
             ps.setString(8, driver.getStatus());
             ps.setInt(9, driver.getDriverid());
-        }catch (SQLException e){
+            status = ps.executeUpdate() > 0;
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return status;
     }
+
     //Delete Driver
-    public boolean DeleteDriver(int driverid) throws SQLException{
+    public boolean DeleteDriver(int driverid) throws SQLException {
         boolean status = false;
-        try(Connection con=getConnection()){
+        try (Connection con = getConnection()) {
             PreparedStatement ps = con.prepareStatement(DELETE_DRIVER);
             ps.setInt(1, driverid);
-            status = ps.executeUpdate() > 0 ;
+            status = ps.executeUpdate() > 0;
         }
         return status;
     }
+
     //Select All Driver
-    public List<Driver> SelectAllDriver() throws SQLException{
+    public List<Driver> SelectAllDriver() throws SQLException {
         List<Driver> list = new ArrayList<>();
-        try(Connection con = getConnection();
-                Statement s = con.createStatement();){
+        try (Connection con = getConnection(); Statement s = con.createStatement();) {
             ResultSet rs = s.executeQuery(SELECT_ALL_DRIVER);
-            while(rs.next()){
+            while (rs.next()) {
                 Driver driver = new Driver();
-                
+
                 driver.setDriverid(rs.getInt("driverid"));
                 driver.setUsername(rs.getString("username"));
                 driver.setPassword(rs.getString("password"));
@@ -113,20 +119,20 @@ public class DriverDAO {
                 driver.setPhonenum(rs.getString("phonenum"));
                 driver.setNoplate(rs.getString("noplate"));
                 driver.setStatus(rs.getString("status"));
-                
+
                 list.add(driver);
             }
         }
         return list;
     }
+
     //Select Driver with driver id
-    public Driver SelectDriverById(int driverid) throws SQLException{
+    public Driver SelectDriverById(int driverid) throws SQLException {
         Driver driver = new Driver();
-        try(Connection con = getConnection();
-                PreparedStatement ps = con.prepareStatement(SELECT_BY_ID)){
+        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(SELECT_BY_ID)) {
             ps.setInt(1, driverid);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 driver.setDriverid(rs.getInt("driverid"));
                 driver.setUsername(rs.getString("username"));
                 driver.setPassword(rs.getString("password"));
@@ -140,14 +146,14 @@ public class DriverDAO {
         }
         return driver;
     }
+
     //Select Driver with username
-    public Driver SelectDriverByUsername(String username) throws SQLException{
+    public Driver SelectDriverByUsername(String username) throws SQLException {
         Driver driver = new Driver();
-        try(Connection con = getConnection();
-                PreparedStatement ps = con.prepareStatement(SELECT_BY_username)){
+        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(SELECT_BY_username)) {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 driver.setDriverid(rs.getInt("driverid"));
                 driver.setUsername(rs.getString("username"));
                 driver.setPassword(rs.getString("password"));
@@ -161,4 +167,27 @@ public class DriverDAO {
         }
         return driver;
     }
+
+    //Verify login
+    public boolean verifyLogin(String username, String password) {
+
+        boolean loginSuccessful = false;
+
+        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(VERIFY_LOGIN)) {
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+                // User with the provided username and password exists in the database
+                loginSuccessful = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return loginSuccessful;
+
+    }
+
 }
