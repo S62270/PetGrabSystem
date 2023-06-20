@@ -37,7 +37,7 @@
         <%@include file="DriverNavbar.jsp" %>
         <div class="page-content">
             <div class="container-fluid">
-                <h1><img src="../Image/pet grab.png" alt="Logo" class="rounded-circle" width="70px">&nbsp; Pet Grab Driver</h1>
+                <h1><img src="/Image/pet grab.png" alt="Logo" class="rounded-circle" width="70px">&nbsp; Pet Grab Driver</h1>
                 <br>
                 <p>Driver Salary Counter</p>
                 <table class="table table-bordered table-hover">
