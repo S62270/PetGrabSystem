@@ -130,7 +130,9 @@ public class DriverController extends HttpServlet {
 
         if (success = true) {
             System.out.println("Driver Update Successful");
-            response.sendRedirect("/DriverAccount.jsp");
+            HttpSession session = request.getSession();
+            session.setAttribute("account",driver );
+            response.sendRedirect("DriverAccount.jsp");
         } else {
             System.out.println("Driver Update is Denied");
         }
