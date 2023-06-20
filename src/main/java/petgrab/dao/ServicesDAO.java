@@ -22,12 +22,12 @@ public class ServicesDAO {
     private final String jdbcUsername = "root";
     private final String jdbcPassword = "";
 
-    private static final String INSERT_SERVICES_SQL = "INSERT INTO services(vendorId,name,description,price) values(?,?,?,?);";
+    private static final String INSERT_SERVICES_SQL = "INSERT INTO service(shopid,name,description,price) values(?,?,?,?);";
     private static final String SELECT_SERVICES_SQL_BY_ID = "SELECT * FROM services where id=?;";
-    private static final String SELECT_ALL_SERVICES_SQL_BY_VENDORID = "SELECT * FROM services where vendorId=?;";    
+    private static final String SELECT_ALL_SERVICES_SQL_BY_VENDORID = "SELECT * FROM services where shopId=?;";    
     private static final String SELECT_ALL_SERVICES_SQL = "SELECT * FROM services;";
     private static final String DELETE_SERVICES_SQL = "delete from services where id=?;";
-    private static final String UPDATE_SERVICES_SQL = "update services set vendorId=?,name=?,description=? price=? where id=?;";
+    private static final String UPDATE_SERVICES_SQL = "update services set shopid=?,name=?,description=? price=? where serviceid=?;";
     
     public ServicesDAO() {
     }
@@ -47,7 +47,7 @@ public class ServicesDAO {
         System.out.println(INSERT_SERVICES_SQL);
 
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(INSERT_SERVICES_SQL)) {
-            ps.setInt(1, service.getVendorId());
+            ps.setInt(1, service.getShopid());
             ps.setString(2, service.getName());
             ps.setString(3, service.getDescription());
             ps.setDouble(4, service.getPrice());
@@ -135,11 +135,11 @@ public class ServicesDAO {
     public boolean updateService(Services service) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(UPDATE_SERVICES_SQL)) {
-            ps.setInt(1, service.getVendorId());
+            ps.setInt(1, service.getShopid());
             ps.setString(2, service.getName());
             ps.setString(3, service.getDescription());
             ps.setDouble(4, service.getPrice());
-            ps.setInt(5, service.getId());
+            ps.setInt(5, service.getServiceid());
             rowUpdated = ps.executeUpdate() > 0;
         }
         return rowUpdated;

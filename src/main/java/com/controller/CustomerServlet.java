@@ -5,7 +5,7 @@ import petgrab.dao.PetShopDAO;
 import com.model.Customer;
 import com.model.Order;
 import com.model.PetShop;
-import com.model.Service;
+import com.model.Services;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 
@@ -17,12 +17,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
+import petgrab.dao.ServicesDAO;
 
 @WebServlet("/Customer")
 public class CustomerServlet extends HttpServlet {
 
     private CustomerDAO custDAO;
     private PetShopDAO petshopDAO;
+    private ServicesDAO serviceDAO;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -136,7 +138,7 @@ public class CustomerServlet extends HttpServlet {
     private void listPetShopById(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         PetShop pets = petshopDAO.selectPetshop(id);
-        List<Service> service = petshopDAO.selectAllService2(id);
+        List<Services> service = serviceDAO.selectAllServicesByVendorID(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("petshoppage.jsp");
         request.setAttribute("pet", pets);
         request.setAttribute("service", service);

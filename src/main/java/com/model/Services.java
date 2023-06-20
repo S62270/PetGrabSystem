@@ -10,41 +10,40 @@ package com.model;
  */
 public class Services {
 
-    private int id;
-    private int vendorId;
+    private int serviceid;
+    private int shopid;
     private String name;
     private String description;
-    private Double price;
+    private double price;
 
-    public Services(int vendorId, String name, String description, double price) {
-        this.vendorId = vendorId;
-        this.name = name;
+    public Services(){
+        
+    }
+    public Services( int shopid,String name, String description, double price) {
+        super();
+        this.name=name;
+        this.shopid = shopid;
         this.description = description;
         this.price = price;
     }
-    
-    public Services(int id, int vendorId, String name, String description, double price){
-        this.id = id;
-        this.vendorId = vendorId;
-        this.name = name;
+    public Services(int serviceid, int shopid, String name, String description, double price) {
+        super();
+        this.serviceid = serviceid;
+        this.shopid = shopid;
         this.description = description;
         this.price = price;
     }
 
-    public int getId() {
-        return id;
+    public int getServiceid() {
+        return serviceid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setServiceid(int serviceid) {
+        this.serviceid = serviceid;
     }
 
-    public int getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(int vendorId) {
-        this.vendorId = vendorId;
+    public int getShopid() {
+        return shopid;
     }
 
     public String getName() {
@@ -55,6 +54,10 @@ public class Services {
         this.name = name;
     }
 
+    public void setShopid(int shopid) {
+        this.shopid = shopid;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -63,12 +66,13 @@ public class Services {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
+    
 
 }
