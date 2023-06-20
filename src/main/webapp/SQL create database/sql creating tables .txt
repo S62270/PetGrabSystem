@@ -1,0 +1,55 @@
+CREATE TABLE drivers(
+    driverid INT(11) PRIMARY KEY AUTO_INCREMENT,
+    username varchar(255) not null UNIQUE,
+    password varchar(255) not null,
+    NAME VARCHAR(30),
+    email VARCHAR(40),
+    address VARCHAR(255),
+    phonenum VARCHAR(12),
+    noplate VARCHAR(10),
+    STATUS VARCHAR(10)
+);
+CREATE TABLE customer(
+    custid INT(11) PRIMARY KEY AUTO_INCREMENT,
+    username varchar(255) not null UNIQUE,
+    password varchar(255) not null,
+    NAME VARCHAR(40),
+    email VARCHAR(40),
+    address VARCHAR(255),
+    phonenum VARCHAR(12)
+);
+CREATE TABLE petshop(
+    shop int (11) primary key AUTO_INCREMENT,
+    username varchar(255) not null UNIQUE,
+    password varchar(255) not null,
+    shopname varchar(40),
+    shopaddress varchar(40),
+    phonenum varchar(12),
+    imagepetshop LONGBLOB
+);
+
+create table service(
+    serviceid int(11) AUTO_INCREMENT primary key,
+    shopid int (11),
+    description varchar(255),
+    price double(9,2),
+    FOREIGN KEY(shopid) REFERENCES petshop(shopid)
+);
+CREATE TABLE orders(
+    orderid INT(11) PRIMARY KEY AUTO_INCREMENT,
+    custid INT(11),
+    driverid INT(11),
+    serviceid INT(11),
+    petname VARCHAR(45),
+    petage INT(11),
+    petgender VARCHAR(45),
+    purposeofvisit VARCHAR(45),
+    TIME VARCHAR(45),
+    DATE VARCHAR(45),
+    STATUS VARCHAR(255),
+        picture LONGBLOB,
+        FOREIGN KEY(custid) REFERENCES customer(custid),
+    FOREIGN KEY(driverid) REFERENCES drivers(driverid),
+    FOREIGN KEY(serviceid) REFERENCES service(serviceid)
+
+);

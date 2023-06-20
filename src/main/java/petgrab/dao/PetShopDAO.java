@@ -1,7 +1,7 @@
 package petgrab.dao;
 
 import com.model.PetShop;
-import com.model.Service;
+import com.model.Services;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -113,30 +113,10 @@ public class PetShopDAO {
         return pet;
     }
 
-    public List<Service> selectAllService2(int id) {
-        List<Service> ser = new ArrayList<>();
+  
 
-        try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(SELECT_ALL_SERVICE);) {
-            System.out.println(ps);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                int serviceid = rs.getInt("serviceid");
-                int shopid = rs.getInt("shopid");
-                String description = rs.getString("description");
-                double price = rs.getDouble("price");
-
-                ser.add(new Service(serviceid, shopid, description, price));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return ser;
-    }
-
-    public Service selectAllService(int id) {
-        Service ser = null;
+    public Services selectAllService(int id) {
+        Services ser = null;
 
         try (Connection connection = getConnection(); PreparedStatement ps = connection.prepareStatement(SELECT_ALL_SERVICE)) {
             ps.setInt(1, id);
@@ -145,9 +125,10 @@ public class PetShopDAO {
 
             while (rs.next()) {
                 int shopid = rs.getInt("shopid");
+                String name = rs.getString("name");
                 String description = rs.getString("description");
                 double price = rs.getDouble("price");
-                ser = new Service(id, shopid, description, price);
+                ser = new Services(id,shopid,name, description, price);
             }
 
         } catch (SQLException e) {
