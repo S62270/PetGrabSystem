@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -179,7 +180,8 @@ public class DriverController extends HttpServlet {
         
         if (loginSuccessful == true) {
             // Redirect to a success page
-            request.setAttribute("account",driver );
+            HttpSession session = request.getSession();
+            session.setAttribute("account",driver );
             RequestDispatcher rd = request.getRequestDispatcher("/DriverMainpage.jsp");
             rd.forward(request, response);
         } else {
