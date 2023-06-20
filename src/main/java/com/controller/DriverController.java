@@ -101,7 +101,7 @@ public class DriverController extends HttpServlet {
         success = dao.AddDriver(driver);
         if (success = true) {
             System.out.println("Driver Insertion Successful");
-            RequestDispatcher rd = request.getRequestDispatcher("Driver/Authentication.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/Authentication.jsp");
             rd.forward(request, response);
         } else {
             System.out.println("Driver Insertion is Denied");
@@ -127,7 +127,7 @@ public class DriverController extends HttpServlet {
 
         if (success = true) {
             System.out.println("Driver Update Successful");
-            response.sendRedirect("Driver/DriverAccount.jsp");
+            response.sendRedirect("/DriverAccount.jsp");
         } else {
             System.out.println("Driver Update is Denied");
         }
@@ -151,7 +151,7 @@ public class DriverController extends HttpServlet {
 
         int driverid = Integer.parseInt(request.getParameter("driverid"));
         Driver existingDriver = dao.SelectDriverById(driverid);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Driver/DriverAccount.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/DriverAccount.jsp");
         request.setAttribute("driver", existingDriver);
         dispatcher.forward(request, response);
     }
@@ -160,7 +160,7 @@ public class DriverController extends HttpServlet {
             throws ServletException, IOException, SQLException {
 
         List<Driver> driver = dao.SelectAllDriver();
-        RequestDispatcher rd = request.getRequestDispatcher("bookList.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("driverList.jsp");
         request.setAttribute("driverlist", driver);
         rd.forward(request, response);
     }
