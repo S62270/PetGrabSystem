@@ -23,11 +23,11 @@ public class ServicesDAO {
     private final String jdbcPassword = "";
 
     private static final String INSERT_SERVICES_SQL = "INSERT INTO service(shopid,name,description,price) values(?,?,?,?);";
-    private static final String SELECT_SERVICES_SQL_BY_ID = "SELECT * FROM services where id=?;";
-    private static final String SELECT_ALL_SERVICES_SQL_BY_VENDORID = "SELECT * FROM services where shopId=?;";    
-    private static final String SELECT_ALL_SERVICES_SQL = "SELECT * FROM services;";
-    private static final String DELETE_SERVICES_SQL = "delete from services where id=?;";
-    private static final String UPDATE_SERVICES_SQL = "update services set shopid=?,name=?,description=? price=? where serviceid=?;";
+    private static final String SELECT_SERVICES_SQL_BY_ID = "SELECT * FROM service where id=?;";
+    private static final String SELECT_ALL_SERVICES_SQL_BY_VENDORID = "SELECT * FROM service where shopId=?;";    
+    private static final String SELECT_ALL_SERVICES_SQL = "SELECT * FROM service;";
+    private static final String DELETE_SERVICES_SQL = "delete from service where id=?;";
+    private static final String UPDATE_SERVICES_SQL = "update service set shopid=?,name=?,description=? price=? where serviceid=?;";
     
     public ServicesDAO() {
     }
@@ -90,7 +90,8 @@ public class ServicesDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                
+                 int id = rs.getInt("serviceId");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
                 double price = rs.getDouble("price");
