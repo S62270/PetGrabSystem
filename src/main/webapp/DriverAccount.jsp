@@ -46,10 +46,14 @@
                             </a>
                         </div>
                         <ul class="list-group">
-                            <li class="list-group-item">Name: John Doe</li>
-                            <li class="list-group-item">Phone: +1 123-456-7890</li>
-                            <li class="list-group-item">Email: Example@gmail.com</li>
-                            <li class="list-group-item">Driver ID: 12345</li>
+                            <li class="list-group-item">Driver ID: ${account.driverid}</li>
+                            <li class="list-group-item">Username: ${account.username}</li>
+                            <li class="list-group-item">Name: ${account.name}</li>
+                            <li class="list-group-item">Email: ${account.email}</li>
+                            <li class="list-group-item">Address: ${account.address}</li>
+                            <li class="list-group-item">Phone: ${account.phonenum}</li>
+                            <li class="list-group-item">License Plate: ${account.noplate}</li>
+                            <li class="list-group-item">Status: ${account.status}</li>
                         </ul>
                     </div>
                 </div>
