@@ -1,4 +1,4 @@
-package com.dao;
+package petgrab.dao;
 
 import com.model.PetShop;
 import com.model.Service;

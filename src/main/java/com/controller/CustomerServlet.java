@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.dao.CustomerDAO;
-import com.dao.PetShopDAO;
+import petgrab.dao.CustomerDAO;
+import petgrab.dao.PetShopDAO;
 import com.model.Customer;
 import com.model.PetShop;
 import com.model.Service;

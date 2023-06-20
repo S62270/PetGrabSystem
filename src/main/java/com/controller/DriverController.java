@@ -4,7 +4,7 @@
  */
 package com.controller;
 
-import com.DAO.DriverDAO;
+import petgrab.dao.DriverDAO;
 import com.model.Driver;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -25,11 +25,11 @@ import java.util.logging.Logger;
  */
 @WebServlet("/DriverController/")
 public class DriverController extends HttpServlet {
-    
+
     private DriverDAO dao;
-    
+
     @Override
-    public void init(){
+    public void init() {
         dao = new DriverDAO();
     }
 
@@ -45,25 +45,25 @@ public class DriverController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             String action = request.getServletPath();
-            
-            switch(action) {
+
+            switch (action) {
                 case "/insert":
-                    insertDriver(request,response);
+                    insertDriver(request, response);
                     break;
                 case "/update":
-                    updateDriver(request,response);
+                    updateDriver(request, response);
                     break;
                 case "/delete":
                     deleteDriver(request, response);
                     break;
                 case "/edit":
-                    editForm(request,response);
+                    editForm(request, response);
                     break;
-                default :
-                    viewList(request,response);
+                default:
+                    viewList(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -86,7 +86,7 @@ public class DriverController extends HttpServlet {
     }
 
     public void insertDriver(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
+            throws ServletException, IOException {
         boolean success = false;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -96,23 +96,23 @@ public class DriverController extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         String noplate = request.getParameter("noplate");
         String status = "Active";
-        
+
         Driver driver = new Driver(username, password, name, email, address, phonenum, noplate, status);
         success = dao.AddDriver(driver);
-        if (success = true){
+        if (success = true) {
             System.out.println("Driver Insertion Successful");
             RequestDispatcher rd = request.getRequestDispatcher("Driver/Authentication.jsp");
             rd.forward(request, response);
-        }else {
+        } else {
             System.out.println("Driver Insertion is Denied");
         }
     }
-    
-    public void updateDriver(HttpServletRequest request,HttpServletResponse response)
-            throws ServletException, IOException{
+
+    public void updateDriver(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         boolean success = false;
-        
-        int driverid = Integer.parseInt( request.getParameter("driverid") );
+
+        int driverid = Integer.parseInt(request.getParameter("driverid"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
@@ -121,50 +121,50 @@ public class DriverController extends HttpServlet {
         String phonenum = request.getParameter("phonenum");
         String noplate = request.getParameter("noplate");
         String status = request.getParameter("status");
-        
+
         Driver driver = new Driver(driverid, username, password, name, email, address, phonenum, noplate, status);
         success = dao.UpdateDriver(driver);
-        
-        if (success = true){
+
+        if (success = true) {
             System.out.println("Driver Update Successful");
             response.sendRedirect("Driver/DriverAccount.jsp");
-        }else {
+        } else {
             System.out.println("Driver Update is Denied");
         }
     }
-    
+
     public void deleteDriver(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException{
+            throws ServletException, IOException, SQLException {
         boolean success = false;
         int driverid = Integer.parseInt(request.getParameter("driverid"));
         success = dao.DeleteDriver(driverid);
-        
-        if (success = true){
+
+        if (success = true) {
             System.out.println("Delete Successful");
             response.sendRedirect("homepage.jsp");
         }
         System.out.println("Delete Unsuccessful");
     }
-    
+
     public void editForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException,IOException, SQLException{
-        
+            throws ServletException, IOException, SQLException {
+
         int driverid = Integer.parseInt(request.getParameter("driverid"));
         Driver existingDriver = dao.SelectDriverById(driverid);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Driver/DriverAccount.jsp");
         request.setAttribute("driver", existingDriver);
         dispatcher.forward(request, response);
     }
-    
+
     public void viewList(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException{
-        
+            throws ServletException, IOException, SQLException {
+
         List<Driver> driver = dao.SelectAllDriver();
         RequestDispatcher rd = request.getRequestDispatcher("bookList.jsp");
         request.setAttribute("driverlist", driver);
         rd.forward(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *
@@ -174,5 +174,5 @@ public class DriverController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }
