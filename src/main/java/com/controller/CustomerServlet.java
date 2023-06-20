@@ -3,6 +3,7 @@ package com.controller;
 import petgrab.dao.CustomerDAO;
 import petgrab.dao.PetShopDAO;
 import com.model.Customer;
+import com.model.Order;
 import com.model.PetShop;
 import com.model.Service;
 import jakarta.servlet.RequestDispatcher;
@@ -36,7 +37,7 @@ public class CustomerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               String action = request.getParameter("action");
+        String action = request.getParameter("action");
 
         try {
             switch (action) {
@@ -61,6 +62,15 @@ public class CustomerServlet extends HttpServlet {
                 case "login":
                     processLogin(request, response);
                     break;
+                case "logout":
+                    processLogout(request, response);
+                    break;
+                case "showBookForm":
+                    showBookForm(request, response);
+                    break;
+                    case "book":
+                    insertBooking(request, response);
+                    break;
                 default:
                     showHomePage(request, response);
                     break;
@@ -70,6 +80,41 @@ public class CustomerServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+    private void insertBooking(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session = request.getSession();
+        
+        int custid = (int) session.getAttribute("customersessionid");
+        int shopid = (int) session.getAttribute("shopid");
+        String petname = request.getParameter("petname");
+        String petage = request.getParameter("petage");
+        String petgender = request.getParameter("petgender");
+        String pov = request.getParameter("purposeofvisit");
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String status = request.getParameter("status");
+        Order order = new Order(custid,shopid,petname,petage,petgender,pov,time,date,status);
+        custDAO.insertOderFromCustomer(order);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("homepage.jsp");     
+        dispatcher.forward(request, response);
+    }
+    private void showBookForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        int shopid = Integer.parseInt(request.getParameter("shopid"));
+        session.setAttribute("shopid", shopid);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bookingForm.jsp");
+        
+        dispatcher.forward(request, response);
+    }
+    private void processLogout(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            // Invalidate the session to end the user's session
+            session.invalidate();
+        }
+        response.sendRedirect("customerLogin.jsp");
+    }
 
     private void processLogin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         String un = request.getParameter("username");
@@ -77,8 +122,9 @@ public class CustomerServlet extends HttpServlet {
 
         Customer cust = custDAO.selectCustomerByUsername(un, pw);
         if (cust != null) {
-            HttpSession session = request.getSession();
-            request.setAttribute("customer", cust);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("customersessionid", cust.getCustid());
+            session.setAttribute("customer", cust);
             RequestDispatcher rd = request.getRequestDispatcher("homepage.jsp");
             rd.forward(request, response);
         } else {

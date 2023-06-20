@@ -48,7 +48,7 @@
             <div class="container">
                 <h1 class="display-4">Welcome to PetGrab: Your Reliable Pet Taxi Service</h1>
                 <p class="lead">Safe and convenient transportation for your furry friends</p>
-                <a href="customerLogin.jsp" class="btn btn-primary btn-lg">See Our Services</a>
+                <a href="service.jsp" class="btn btn-primary btn-lg">See Our Services</a>
             </div>
         </section>
         <!-- Main content -->

@@ -53,6 +53,12 @@
                         <div class="portfolio-description">
                             <p>Contact Shop : <c:out value='${pet.phonenum}'/></p>
                         </div>
+                            <c:if test="${customersessionid !=null}">
+                            <a href="CustomerServlet?action=showBookForm&shopid=<c:out value='${pet.shopid}'/>" class="btn btn-primary btn-lg">Book Now</a>
+                            </c:if>
+                            <c:if test="${customersessionid ==null}">
+                            <a href="customerLogin.jsp" class="btn btn-primary btn-lg">Log In to Book Order</a>
+                            </c:if>
                     </div>
 
                 </div>
