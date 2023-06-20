@@ -104,7 +104,8 @@ public class DriverController extends HttpServlet {
         success = dao.AddDriver(driver);
         if (success = true) {
             System.out.println("Driver Insertion Successful");
-            RequestDispatcher rd = request.getRequestDispatcher("/Authentication.jsp");
+            request.setAttribute("message", "Registration success!");
+            RequestDispatcher rd = request.getRequestDispatcher("/homepage.jsp");
             rd.forward(request, response);
         } else {
             System.out.println("Driver Insertion is Denied");
