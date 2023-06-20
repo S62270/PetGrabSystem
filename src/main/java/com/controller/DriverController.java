@@ -45,8 +45,8 @@ public class DriverController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-            String action = request.getParameter("action");
-            System.out.println(request.getServletPath());
+        String action = request.getParameter("action");
+        System.out.println(request.getServletPath());
         try {
             switch (action) {
                 case "insert":
@@ -60,6 +60,9 @@ public class DriverController extends HttpServlet {
                     break;
                 case "edit":
                     editForm(request, response);
+                    break;
+                case "login":
+                    login(request, response); // Handle login action
                     break;
                 default:
                     viewList(request, response);
@@ -162,6 +165,27 @@ public class DriverController extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("driverList.jsp");
         request.setAttribute("driverlist", driver);
         rd.forward(request, response);
+    }
+
+    public void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        // Call the DAO method to verify the login credentials
+        boolean loginSuccessful = dao.verifyLogin(username, password);
+        
+        Driver driver = dao.SelectDriverByUsername(username);
+        
+        if (loginSuccessful == true) {
+            // Redirect to a success page
+            request.setAttribute("account",driver );
+            RequestDispatcher rd = request.getRequestDispatcher("/DriverMainpage.jsp");
+            rd.forward(request, response);
+        } else {
+            // Redirect to a failure page
+            response.sendRedirect("Authentication.jsp");
+        }
     }
 
     /**

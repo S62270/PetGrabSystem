@@ -83,7 +83,7 @@
     <h2>Login</h2>
     <c:choose>
         <c:when test="${not empty param.showLoginForm}">
-            <form id="login-form" action="login.php" method="POST">
+            <form id="login-form" action="DriverController?action=login" method="POST">
                 <div class="mb-3">
                     <label for="login-username" class="form-label">Username</label>
                     <input type="text" id="login-username" name="username" class="form-control" placeholder="Enter your username" required>
