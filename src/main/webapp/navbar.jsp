@@ -58,11 +58,19 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Driver
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Driver/Authentication.jsp">Log in</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Get Started!
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="customerForm.jsp">Sign up</a></li>
-                                <li><a class="dropdown-item" href="customerLogin.jsp">Log in</a></li>
+                                <li><a class="dropdown-item" href="/customerForm.jsp">Sign up</a></li>
+                                <li><a class="dropdown-item" href="/customerLogin.jsp">Log in</a></li>
                             </ul>
                         </li>
                     </ul>

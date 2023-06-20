@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -111,16 +112,16 @@
                 </div>
             </div>
         </section>
-    <!-- Pricing section -->
-    <section class="bg-light py-5">
-        <div class="container text-center">
-            <h2>Pricing</h2>
-            <p>Contact us for a personalized quote based on your requirements.</p>
-        </div>
-    </section>
+        <!-- Pricing section -->
+        <section class="bg-light py-5">
+            <div class="container text-center">
+                <h2>Pricing</h2>
+                <p>Contact us for a personalized quote based on your requirements.</p>
+            </div>
+        </section>
 
-    <!-- Contact section -->
-    <jsp:include page="footer.jsp"/>
+        <!-- Contact section -->
+        <jsp:include page="footer.jsp"/>
 
-</body>
+    </body>
 </html>
