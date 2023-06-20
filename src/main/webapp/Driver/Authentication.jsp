@@ -88,7 +88,6 @@
         </script>
     </head>
     <body>
-        <jsp:include page="../navbar.jsp" />
         <div class="container">
             <!-- Login Form -->
             <h2>Login</h2>
@@ -150,6 +149,7 @@
             <div class="form-footer">
                 <p>Not registered? <a href="#" onclick="showRegistrationForm()">Create an account</a></p>
                 <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+                <p>Back to  <a href="../homepage.jsp">Homepage</a></p>
             </div>
         </div>
 
