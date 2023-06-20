@@ -26,7 +26,7 @@
                         <div class="col-md-4" >
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="listPetShopById?id=<c:out value='${ven.shopid}'/>"><c:out value="${ven.shopname}"/></a></h5>
+                                    <h5 class="card-title"><a href="Customer?action=listPetShopById&id=<c:out value='${ven.shopid}'/>"><c:out value="${ven.shopname}"/></a></h5>
                                     <p class="card-text"><c:out value="${ven.shopaddress}"/></p>
                                 </div>
                             </div>

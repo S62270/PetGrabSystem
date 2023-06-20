@@ -12,7 +12,7 @@
         <title>INVALID</title>
         <script>
             setTimeout(function () {
-                window.location.href = "customerLogin.html";
+                window.location.href = "customerLogin.jsp";
             }, 5000); // Redirect after 5 seconds
         </script>
     </head>

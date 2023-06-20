@@ -5,6 +5,7 @@
 package petgrab.dao;
 
 import com.model.Customer;
+import com.model.Order;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,10 +17,10 @@ public class CustomerDAO {
     Connection connection = null;
     private final String jdbcURL = "jdbc:mysql://localhost:3306/petgrabsystem";
     private final String jdbcUsername = "root";
-    private final String jdbcPassword = "";
+    private final String jdbcPassword = "admin";
     private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer(username,passwords,name,email,address,phonenum) VALUES (?,?,?,?,?,?);";
     private static final String SELECT_CUSTOMER_BY_ID = "SELECT id,username,passwords,name,email,address,phonenum FROM customer WHERE id=?";
-    private static final String SELECT_ALL_CUSTOMER = "SELECT * FROM customer";
+    private static final String BOOK_ORDER_CUSTOMER = "INSERT INTO orders(custid,shopid,petname,petage,petgender,purposeofvisit,time,date,status) VALUES (?,?,?,?,?,?,?,?,?)";
     private static final String LOGIN = "SELECT * FROM customer WHERE username=? AND passwords=?";
     private static final String UPDATE_CUSTOMER_SQL = "UPDATE customer SET username=?,passwords=?,name=?,email=?,address=?,phonenum=? WHERE id=?";
 
@@ -38,6 +39,29 @@ public class CustomerDAO {
             e.printStackTrace();
         }
         return connection;
+    }
+    public void insertOderFromCustomer(Order order) throws SQLException {
+        System.out.println(BOOK_ORDER_CUSTOMER);
+
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(BOOK_ORDER_CUSTOMER);
+
+            ps.setInt(1, order.getCustid());
+            ps.setInt(2, order.getShopid());
+            ps.setString(3, order.getPetname());
+            ps.setString(4, order.getPetage());
+            ps.setString(5, order.getPetgender());
+            ps.setString(6, order.getPurposeofvisit());
+            ps.setString(7, order.getTime());
+            ps.setString(8, order.getDate());
+            ps.setString(9, order.getStatus());
+            System.out.println(ps);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void insertCustomer(Customer cust) throws SQLException {

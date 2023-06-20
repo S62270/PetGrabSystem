@@ -54,7 +54,7 @@
                             <a class="nav-link" href="http://localhost:8080/PetGrabSystem/aboutus.jsp">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="http://localhost:8080/PetGrabSystem/CustomerServlet?action=listPetShop">Service</a>
+                            <a class="nav-link" href="http://localhost:8080/PetGrabSystem/Customer?action=listPetShop">Service</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,19 +64,25 @@
                                 <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/Driver/Authentication.jsp">Log in</a></li>
                             </ul>
                         </li>
+                         <c:if test="${customer ==null}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Get Started!
                             </a>
+                            
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/customerForm.jsp">Sign up</a></li>
                                 <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/customerLogin.jsp">Log in</a></li>
                             </ul>
                         </li>
+                        </c:if>
+                        <c:if test="${customer !=null}">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="CustomerServlet?action=logout">Logout</a>
+                        </li>
+                        </c:if>
                     </ul>
-                    <c:if test="${customer!=null}">
-                        <h1 style="color: white">Welcome back, <c:out value="${customer.username}"/></h1>
-                    </c:if>
+             
                 </div>
             </div>
         </nav>

@@ -24,7 +24,8 @@
             <div class="card">
                 <div class="card-body">
                     <h1 style='text-align: center'>Login</h1>
-                    <form action="login">
+                    <form action="CustomerServlet">
+                        <input value="login" name="action" type="hidden">
                         <div class="mb-3">
                             <label class="form-label">Username</label>
                             <input type="text" class="form-control" name="username" placeholder="Enter your username">
