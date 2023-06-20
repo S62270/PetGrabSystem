@@ -25,7 +25,7 @@ public class DriverDAO {
     private String jdbcUrl = "jdbc:mysql://localhost:3306/petgrabsystem";
     
     //SQL Queries
-    private final String ADD_DRIVER ="INSERT INTO driver ((username, `password`, `name`, email, address, phonenum, noplate, `status`) VALUES (?,?,?,?,?,?,?,?)";
+    private final String ADD_DRIVER ="INSERT INTO driver (username, password, name, email, address, phonenum, noplate, status) VALUES (?,?,?,?,?,?,?,?)";
     private final String UPDATE_DRIVER = "UPDATE driver SET username=?, password=?, name=?, email=?, address=?, phonenum=?, noplate=?, status=? WHERE driverid=?";
     private final String DELETE_DRIVER = "DELETE FROM driver WHERE driverid=?";
     private final String SELECT_BY_username = "SELECT * FROM driver WHERE username=?";
@@ -79,6 +79,7 @@ public class DriverDAO {
             ps.setString(7, driver.getNoplate());
             ps.setString(8, driver.getStatus());
             ps.setInt(9, driver.getDriverid());
+            status = ps.executeUpdate() > 0;
         }catch (SQLException e){
             e.printStackTrace();
         }

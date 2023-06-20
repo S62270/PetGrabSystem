@@ -45,20 +45,20 @@ public class DriverController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+            String action = request.getParameter("action");
+            System.out.println(request.getServletPath());
         try {
-            String action = request.getServletPath();
-            
             switch (action) {
-                case "/insert":
+                case "insert":
                     insertDriver(request, response);
                     break;
-                case "/update":
+                case "update":
                     updateDriver(request, response);
                     break;
-                case "/delete":
+                case "delete":
                     deleteDriver(request, response);
                     break;
-                case "/edit":
+                case "edit":
                     editForm(request, response);
                     break;
                 default:
