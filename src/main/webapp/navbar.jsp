@@ -8,50 +8,50 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <style>
             /* Custom Navbar Styles */
-    .navbar {
-        background-color: #333;
-        padding: 10px;
-    }
-    .navbar-brand {
-        color: #fff;
-        font-size: 24px;
-        font-weight: bold;
-    }
-    .navbar-brand:hover {
-        color: #a1cdf1;
-    }
-    .navbar-nav .nav-link {
-        color: #fff;
-        margin-right: 10px;
-    }
-    .navbar-nav .nav-link:hover {
-        color: #a1cdf1;
-    }
-    .dropdown-menu {
-        background-color: #333;
-    }
-    .dropdown-item {
-        color: #fff;
-    }
-    .dropdown-item:hover {
-        background-color: #a1cdf1;
-    }
+            .navbar {
+                background-color: #333;
+                padding: 10px;
+            }
+            .navbar-brand {
+                color: #fff;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .navbar-brand:hover {
+                color: #a1cdf1;
+            }
+            .navbar-nav .nav-link {
+                color: #fff;
+                margin-right: 10px;
+            }
+            .navbar-nav .nav-link:hover {
+                color: #a1cdf1;
+            }
+            .dropdown-menu {
+                background-color: #333;
+            }
+            .dropdown-item {
+                color: #fff;
+            }
+            .dropdown-item:hover {
+                background-color: #a1cdf1;
+            }
         </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="homepage.jsp">PetGrab</a>
+                <a class="navbar-brand" href="http://localhost:8080/PetGrabSystem/homepage.jsp">PetGrab</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="homepage.jsp">Home</a>
+                            <a class="nav-link" aria-current="page" href="http://localhost:8080/PetGrabSystem/homepage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="aboutus.jsp">About</a>
+                            <a class="nav-link" href="http://localhost:8080/PetGrabSystem/aboutus.jsp">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="http://localhost:8080/PetGrabSystem/CustomerServlet?action=listPetShop">Service</a>
@@ -61,7 +61,7 @@
                                 Driver
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Driver/Authentication.jsp">Log in</a></li>
+                                <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/Driver/Authentication.jsp">Log in</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -69,13 +69,13 @@
                                 Get Started!
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/customerForm.jsp">Sign up</a></li>
-                                <li><a class="dropdown-item" href="/customerLogin.jsp">Log in</a></li>
+                                <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/customerForm.jsp">Sign up</a></li>
+                                <li><a class="dropdown-item" href="http://localhost:8080/PetGrabSystem/customerLogin.jsp">Log in</a></li>
                             </ul>
                         </li>
                     </ul>
                     <c:if test="${customer!=null}">
-                    <h1 style="color: white">Welcome back, <c:out value="${customer.username}"/></h1>
+                        <h1 style="color: white">Welcome back, <c:out value="${customer.username}"/></h1>
                     </c:if>
                 </div>
             </div>
